@@ -51,5 +51,31 @@
         "x": 480,
         "y": 140,
         "wires": []
+    },
+    {
+        "id": "216bb4b93960b281",
+        "type": "debug",
+        "z": "02869fe809604956",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 500,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "2b810ca271f585fd",
+        "type": "comment",
+        "z": "02869fe809604956",
+        "name": "",
+        "info": "",
+        "x": 280,
+        "y": 260,
+        "wires": []
     }
 ]
