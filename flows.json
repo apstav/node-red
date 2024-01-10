@@ -8,7 +8,30 @@
         "env": []
     },
     {
-        "id": "e6a11580a2077c92",
+        "id": "aa0e14b0.d73c58",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false
+    },
+    {
+        "id": "218495ec.90e97a",
+        "type": "orion-service-api-v2",
+        "contextbroker": "orionGreeceUNISYSTEMS-UNIFI",
+        "selectedContextbroker": "orionGreeceUNISYSTEMS-UNIFI",
+        "name": "orionGreeceUNISYSTEMS-UNIFI",
+        "authentication": "",
+        "url": "192.168.1.47",
+        "port": "8453"
+    },
+    {
+        "id": "2f4541ee0abe4922",
         "type": "inject",
         "z": "02869fe809604956",
         "name": "",
@@ -28,19 +51,49 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 300,
-        "y": 120,
+        "x": 160,
+        "y": 180,
         "wires": [
             [
-                "f5f6532e6d987d59"
+                "d94e9f4b517912b0"
             ]
         ]
     },
     {
-        "id": "f5f6532e6d987d59",
+        "id": "08bd0c1f69afe0d2",
+        "type": "comment",
+        "z": "02869fe809604956",
+        "name": "TrainingMachine",
+        "info": "",
+        "x": 620,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d94e9f4b517912b0",
+        "type": "function",
+        "z": "02869fe809604956",
+        "name": "",
+        "func": "var out = {};\n\nmsgIn = msg.payload;\n\nout.payload = {\n    \"devicename\":\"TrainingMachine007\"\n}\n\nreturn out;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 380,
+        "y": 180,
+        "wires": [
+            [
+                "47bfdcc137d473b9",
+                "1dfa678a63eccd0b"
+            ]
+        ]
+    },
+    {
+        "id": "47bfdcc137d473b9",
         "type": "debug",
         "z": "02869fe809604956",
-        "name": "debug 1",
+        "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -48,38 +101,61 @@
         "complete": "false",
         "statusVal": "",
         "statusType": "auto",
-        "x": 480,
+        "x": 510,
         "y": 140,
         "wires": []
     },
     {
-        "id": "216bb4b93960b281",
+        "id": "1dfa678a63eccd0b",
+        "type": "iotdirectory-new-device-from-model",
+        "z": "02869fe809604956",
+        "name": "",
+        "authentication": "",
+        "devicename": "",
+        "latitude": "",
+        "longitude": "",
+        "k1": "fad8ed6a-ef0e-4961-bae4-6453dff51169",
+        "k2": "f5641fcd-5aa9-41bd-a479-ecfb0bc5da7b",
+        "model": "TrainingMachine",
+        "selectedModel": "TrainingMachine",
+        "staticAttributeList": [],
+        "x": 720,
+        "y": 180,
+        "wires": [
+            [
+                "585d9468e59c98ff"
+            ]
+        ]
+    },
+    {
+        "id": "585d9468e59c98ff",
         "type": "debug",
         "z": "02869fe809604956",
-        "name": "debug 2",
+        "name": "",
         "active": true,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
-        "complete": "false",
+        "complete": "payload",
+        "targetType": "msg",
         "statusVal": "",
         "statusType": "auto",
-        "x": 500,
-        "y": 260,
+        "x": 990,
+        "y": 180,
         "wires": []
     },
     {
-        "id": "2b810ca271f585fd",
+        "id": "583963f4978182ae",
         "type": "comment",
         "z": "02869fe809604956",
-        "name": "",
+        "name": "Update Instance",
         "info": "",
-        "x": 280,
+        "x": 160,
         "y": 260,
         "wires": []
     },
     {
-        "id": "d533d116f7b97a50",
+        "id": "cad9a767285d8293",
         "type": "inject",
         "z": "02869fe809604956",
         "name": "",
@@ -99,20 +175,424 @@
         "topic": "",
         "payload": "",
         "payloadType": "date",
-        "x": 300,
-        "y": 420,
+        "x": 160,
+        "y": 340,
+        "wires": [
+            [
+                "8637264a8ec72dc1"
+            ]
+        ]
+    },
+    {
+        "id": "8637264a8ec72dc1",
+        "type": "function",
+        "z": "02869fe809604956",
+        "name": "",
+        "func": "var time_now = new Date().toISOString();\nmsgIn = msg.payload[0];\nvar out = {};\n\nout.payload = {\n    \"id\": \"TrainingMachine007\",\n    \"type\": \"TrainingMachine\",\n    \"name\":{\n        \"type\":\"string\",\n        \"value\": \"TrainingMachine007\"\n        \n    },\n    \"description\": {\n        \"type\": \"string\", \n        \"value\": \"this device\" \n        \n    },\n    \"current\": { \n        \"type\": \"float\", \n        \"value\": \"0.05\"\n        \n    },\n    \"powerConsumption\": { \n        \"type\": \"float\", \n        \"value\": \"0.5\"\n        \n    },\n};\n\nreturn out;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 400,
+        "y": 340,
+        "wires": [
+            [
+                "11987bc5c005fc80",
+                "f4182f06599689e9"
+            ]
+        ]
+    },
+    {
+        "id": "4c1578dc0b07d841",
+        "type": "orion-out-api-v2",
+        "z": "02869fe809604956",
+        "name": "",
+        "tls": "aa0e14b0.d73c58",
+        "service": "218495ec.90e97a",
+        "entype": "",
+        "enid": "",
+        "userk1": "",
+        "passk2": "",
+        "tenant": "",
+        "servicepath": "",
+        "apikey": "",
+        "basicAuth": "",
+        "x": 720,
+        "y": 340,
+        "wires": [
+            [
+                "35975ea49591ee3b"
+            ]
+        ]
+    },
+    {
+        "id": "35975ea49591ee3b",
+        "type": "debug",
+        "z": "02869fe809604956",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1010,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "9ea1b9074e4cdb7c",
+        "type": "comment",
+        "z": "02869fe809604956",
+        "name": "Create Instance",
+        "info": "",
+        "x": 140,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "036d72c59826bdd1",
+        "type": "orion-out-api-v2",
+        "z": "02869fe809604956",
+        "name": "",
+        "tls": "aa0e14b0.d73c58",
+        "service": "218495ec.90e97a",
+        "entype": "",
+        "enid": "",
+        "userk1": "",
+        "passk2": "",
+        "tenant": "",
+        "servicepath": "",
+        "apikey": "",
+        "basicAuth": "",
+        "x": 600,
+        "y": 620,
+        "wires": [
+            [
+                "82fae95e618deb6b",
+                "1abef9bcb4963e14"
+            ]
+        ]
+    },
+    {
+        "id": "82fae95e618deb6b",
+        "type": "debug",
+        "z": "02869fe809604956",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 970,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "e172e73d9c0d707c",
+        "type": "comment",
+        "z": "02869fe809604956",
+        "name": "TrainingTotalConsumption",
+        "info": "",
+        "x": 210,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "4e550ef6147d9473",
+        "type": "comment",
+        "z": "02869fe809604956",
+        "name": "Update Instance",
+        "info": "",
+        "x": 420,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "11987bc5c005fc80",
+        "type": "debug",
+        "z": "02869fe809604956",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 570,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "1abef9bcb4963e14",
+        "type": "function",
+        "z": "02869fe809604956",
+        "name": "",
+        "func": "var time_now = new Date().toISOString();\n\nmsgIn = msg.payload.data.msgToSend;\n\nconsole.log(msgIn)\nvar out = {};\n\nvar tConsumption = 0;\n\n\nout.payload = {\n    \"id\": \"TrainingTotalConsumption01\",\n    \"type\": \"TrainingMachine\",\n    \"name\":{\n        \"type\":\"string\",\n        \"value\": \"TrainingTotalConsumption01\"\n        \n    },\n    \"totalConsumption\": {\n        \"type\": \"float\",\n        \"value\": msgIn.powerConsumption.value\n    },\n    \"totalCurrent\": {\n        \"type\": \"float\",\n        \"value\": \"\"\n    },\n    \"trainingMachine\": {\n        \"type\": \"string\",\n        \"value\": \"\"\n    },\n    \"uuid\": {\n        \"type\": \"string\",\n        \"value\": \"\"\n    }\n};\n\nreturn out;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1080,
+        "y": 500,
+        "wires": [
+            [
+                "d101f04a28159d33"
+            ]
+        ]
+    },
+    {
+        "id": "d101f04a28159d33",
+        "type": "debug",
+        "z": "02869fe809604956",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1350,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "94ace18dad4a5d96",
+        "type": "debug",
+        "z": "02869fe809604956",
+        "name": "",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "2b901cc940dc9a82",
+        "type": "change",
+        "z": "02869fe809604956",
+        "name": "",
+        "rules": [
+            {
+                "t": "move",
+                "p": "payload",
+                "pt": "msg",
+                "to": ".payload",
+                "tot": "flow"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 910,
+        "y": 400,
+        "wires": [
+            [
+                "94ace18dad4a5d96"
+            ]
+        ]
+    },
+    {
+        "id": "1c1c7c1eeec864d3",
+        "type": "function",
+        "z": "02869fe809604956",
+        "name": "",
+        "func": "var time_now = new Date().toISOString();\n\nmsgIn = msg.payload;\n\nvar out = {};\n\n\n\nout.payload = {\n    \"id\": \"TrainingTotalConsumption01\",\n    \"type\": \"TrainingMachine\",\n    \"name\":{\n        \"type\":\"string\",\n        \"value\": \"TrainingTotalConsumption01\"\n        \n    },\n    \"totalConsumption\": {\n        \"type\": \"float\",\n        \"value\": \"\"\n    },\n    \"totalCurrent\": {\n        \"type\": \"float\",\n        \"value\": \"\"\n    },\n    \"trainingMachine\": {\n        \"type\": \"string\",\n        \"value\": \"\"\n    },\n    \"uuid\": {\n        \"type\": \"string\",\n        \"value\": \"\"\n    }\n};\n\nreturn out;\n",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 620,
+        "wires": [
+            [
+                "036d72c59826bdd1"
+            ]
+        ]
+    },
+    {
+        "id": "ec082176637b0fcd",
+        "type": "inject",
+        "z": "02869fe809604956",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 620,
+        "wires": [
+            [
+                "1c1c7c1eeec864d3"
+            ]
+        ]
+    },
+    {
+        "id": "f4182f06599689e9",
+        "type": "function",
+        "z": "02869fe809604956",
+        "name": "",
+        "func": "global.set(\"trainingMachine\",msg.payload);\nvar c\n\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 660,
+        "y": 480,
+        "wires": [
+            [
+                "1abef9bcb4963e14"
+            ]
+        ]
+    },
+    {
+        "id": "f38d3901eadbd1d9",
+        "type": "trigger",
+        "z": "02869fe809604956",
+        "name": "",
+        "op1": "1",
+        "op2": "0",
+        "op1type": "str",
+        "op2type": "str",
+        "duration": "250",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "ms",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 260,
+        "y": 540,
         "wires": [
             []
         ]
     },
     {
-        "id": "49e1883d5fc3aa91",
-        "type": "comment",
+        "id": "e684a5131c333068",
+        "type": "inject",
         "z": "02869fe809604956",
         "name": "",
-        "info": "",
-        "x": 540,
-        "y": 420,
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{ \"consumption\" :2}",
+        "payloadType": "json",
+        "x": 150,
+        "y": 760,
+        "wires": [
+            [
+                "59364c39321c895c"
+            ]
+        ]
+    },
+    {
+        "id": "eee1dea91aba6ffa",
+        "type": "inject",
+        "z": "02869fe809604956",
+        "name": "{    \"totalConsumption\": 20}",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "{    \"totalConsumption\": 20}",
+        "payloadType": "json",
+        "x": 190,
+        "y": 860,
+        "wires": [
+            [
+                "59364c39321c895c"
+            ]
+        ]
+    },
+    {
+        "id": "59364c39321c895c",
+        "type": "function",
+        "z": "02869fe809604956",
+        "name": "",
+        "func": "\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 560,
+        "y": 780,
+        "wires": [
+            [
+                "217a332fc72e7058"
+            ]
+        ]
+    },
+    {
+        "id": "217a332fc72e7058",
+        "type": "debug",
+        "z": "02869fe809604956",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 800,
         "wires": []
     }
 ]
