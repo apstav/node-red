@@ -77,5 +77,42 @@
         "x": 280,
         "y": 260,
         "wires": []
+    },
+    {
+        "id": "d533d116f7b97a50",
+        "type": "inject",
+        "z": "02869fe809604956",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 300,
+        "y": 420,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "49e1883d5fc3aa91",
+        "type": "comment",
+        "z": "02869fe809604956",
+        "name": "",
+        "info": "",
+        "x": 540,
+        "y": 420,
+        "wires": []
     }
 ]
